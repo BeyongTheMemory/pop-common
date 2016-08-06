@@ -2,10 +2,9 @@ package com.pop.exception;
 
 import org.springframework.core.NestedRuntimeException;
 
-/**
- * Created by chewenjie on 2015/7/27.
- */
-public class AuthException extends NestedRuntimeException {
+
+public class AuthException extends NestedRuntimeException implements ExceptionInfoGetter{
+
 
     private String content;
 
@@ -31,5 +30,10 @@ public class AuthException extends NestedRuntimeException {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public ExceptionInfo getInfo() {
+        return new ExceptionInfo(code,content);
     }
 }
